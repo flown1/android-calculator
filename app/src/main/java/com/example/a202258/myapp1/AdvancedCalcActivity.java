@@ -8,9 +8,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SimpleCalcActivity extends AppCompatActivity {
+public class AdvancedCalcActivity extends AppCompatActivity {
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_c,
-            btn_back, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq;
+            btn_back, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq,
+            btn_sin, btn_cos, btn_tan, btn_ln, btn_sqrt, btn_log, btn_pow2, btn_powy;
     private TextView display;
     private double sum = 0;
     private boolean firstInput = true;
@@ -21,7 +22,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_simplecalc);
+        setContentView(R.layout.activity_advancedcalc);
         addListenerToButtons();
         addListenerToEditText();
     }
@@ -46,6 +47,14 @@ public class SimpleCalcActivity extends AppCompatActivity {
         btn_sign = (Button) findViewById(R.id.btn_sign);
         btn_add = (Button) findViewById(R.id.btn_add);
         btn_eq = (Button) findViewById(R.id.btn_eq);
+        btn_sin = (Button) findViewById(R.id.btn_sin);
+        btn_cos = (Button) findViewById(R.id.btn_cos);
+        btn_tan = (Button) findViewById(R.id.btn_tan);
+        btn_ln = (Button) findViewById(R.id.btn_ln);
+        btn_sqrt = (Button) findViewById(R.id.btn_sqrt);
+        btn_pow2 = (Button) findViewById(R.id.btn_pow2);
+        btn_powy = (Button) findViewById(R.id.btn_powy);
+        btn_log = (Button) findViewById(R.id.btn_log);
 
         btn_0.setOnClickListener(new View.OnClickListener() {
             @Override

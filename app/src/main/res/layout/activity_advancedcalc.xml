@@ -26,6 +26,64 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/btn_sin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sin" />
+
+                <Button
+                    android:id="@+id/btn_cos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="cos" />
+
+                <Button
+                    android:id="@+id/btn_tan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="tan" />
+
+                <Button
+                    android:id="@+id/btn_ln"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ln" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <Button
+                    android:id="@+id/btn_sqrt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="sqrt" />
+
+                <Button
+                    android:id="@+id/btn_pow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x^2" />
+
+                <Button
+                    android:id="@+id/btn_powy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="x^y" />
+
+                <Button
+                    android:id="@+id/btn_log"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="log" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <Button
