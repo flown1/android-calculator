@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.log;
+import static java.lang.Math.pow;
+import static java.lang.Math.sin;
+import static java.lang.Math.sqrt;
+import static java.lang.Math.tan;
+
 public class AdvancedCalcActivity extends AppCompatActivity {
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_c,
             btn_back, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq,
@@ -18,6 +25,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
     private boolean clearOnInput = false;
 
     private String lastOP = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -259,6 +267,111 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                 }
             }
         });
+        btn_sin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(display.getText().length() > 0){
+                        sum = sin(Double.parseDouble(display.getText().toString()));
+                        display.setText(String.valueOf(sum));
+                        clearOnInput = true;
+                    }
+                };
+        });
+        btn_cos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    sum = cos(Double.parseDouble(display.getText().toString()));
+                    display.setText(String.valueOf(sum));
+                    clearOnInput = true;
+                }
+            };
+        });
+        btn_tan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    sum = tan(Double.parseDouble(display.getText().toString()));
+                    display.setText(String.valueOf(sum));
+                    clearOnInput = true;
+                }
+            };
+        });
+        btn_ln.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    double val = Double.parseDouble(display.getText().toString());
+                    if(val > 0) {
+                        sum = log(val);
+                        display.setText(String.valueOf(sum));
+                        clearOnInput = true;
+                    }else{
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, "Invalid argument - use positive number", duration);
+                        toast.show();
+                    }
+                }
+            };
+        });
+        btn_log.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    double val = Double.parseDouble(display.getText().toString());
+                    if(val > 0) {
+                        sum = log(val) / log(10);
+                        display.setText(String.valueOf(sum));
+                        clearOnInput = true;
+                    }else{
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, "Invalid argument - use positive number", duration);
+                        toast.show();
+                    }
+                }
+            };
+        });
+        btn_sqrt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    sum = sqrt(Double.parseDouble(display.getText().toString()));
+                    display.setText(String.valueOf(sum));
+                    clearOnInput = true;
+                }
+            };
+        });
+        btn_pow2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    sum = pow(Double.parseDouble(display.getText().toString()), 2);
+                    display.setText(String.valueOf(sum));
+                    clearOnInput = true;
+                }
+            };
+        });
+        btn_powy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0) {
+                    if(firstInput == true) {
+                        sum = Double.parseDouble(display.getText().toString());
+                        firstInput = false;
+                    }else
+                        sum = pow(sum, Double.parseDouble(display.getText().toString()));
+                    String val = String.valueOf(sum);
+                    if(!val.equals("Infinity") && !val.equals("NaN"))
+                        display.setText(val);
+                    clearOnInput = true;
+                    lastOP = "powy";
+                }
+            }
+        });
         btn_eq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -282,12 +395,16 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                                 display.setText(String.valueOf(sum));
                             }else{
                                 Context context = getApplicationContext();
-                                CharSequence text = "Invalid operation! Dividing by zero";
                                 int duration = Toast.LENGTH_SHORT;
 
-                                Toast toast = Toast.makeText(context, text, duration);
+                                Toast toast = Toast.makeText(context, "Invalid operation - Dividing by zero", duration);
                                 toast.show();
                             }
+                            break;
+                        case "powy":
+                            sum = pow(sum, Double.parseDouble(display.getText().toString()));
+                            display.setText(String.valueOf(sum));
+
                             break;
                         default:
                             break;
