@@ -17,24 +17,31 @@ import static java.lang.Math.tan;
 
 public class AdvancedCalcActivity extends AppCompatActivity {
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_c,
-            btn_back, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq,
-            btn_sin, btn_cos, btn_tan, btn_ln, btn_sqrt, btn_log, btn_pow2, btn_powy;
+            btn_ac, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq,
+            btn_sin, btn_cos, btn_tan, btn_ln, btn_sqrt, btn_log, btn_pow2, btn_powy, btn_proc;
     private TextView display;
     private double sum = 0;
     private boolean firstInput = true;
     private boolean clearOnInput = false;
-
     private String lastOP = "";
-
+    private int countCClicks = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advancedcalc);
+
+        if(savedInstanceState != null){
+            sum = savedInstanceState.getDouble("SUM_STATE_KEY");
+            firstInput = savedInstanceState.getBoolean("FIRSTINPUT_STATE_KEY");
+            clearOnInput = savedInstanceState.getBoolean("CLEARONINPUT_STATE_KEY");
+            countCClicks = savedInstanceState.getInt("COUNTCCLICKS_STATE_KEY");
+            lastOP = savedInstanceState.getString("LASTOP_STATE_KEY");
+
+        }
         addListenerToButtons();
         addListenerToEditText();
     }
-
     public void addListenerToButtons() {
         btn_0 = (Button) findViewById(R.id.btn_0);
         btn_1 = (Button) findViewById(R.id.btn_1);
@@ -47,7 +54,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         btn_8 = (Button) findViewById(R.id.btn_8);
         btn_9 = (Button) findViewById(R.id.btn_9);
         btn_c = (Button) findViewById(R.id.btn_c);
-        btn_back = (Button) findViewById(R.id.btn_back);
+        btn_ac = (Button) findViewById(R.id.btn_ac);
         btn_div = (Button) findViewById(R.id.btn_div);
         btn_multi = (Button) findViewById(R.id.btn_multi);
         btn_sub = (Button) findViewById(R.id.btn_sub);
@@ -63,6 +70,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         btn_pow2 = (Button) findViewById(R.id.btn_pow2);
         btn_powy = (Button) findViewById(R.id.btn_powy);
         btn_log = (Button) findViewById(R.id.btn_log);
+        btn_proc = (Button) findViewById(R.id.btn_proc);
 
         btn_0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,20 +172,27 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                 display.append("9");
             }
         });
-        btn_back.setOnClickListener(new View.OnClickListener() {
+        btn_ac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(display.getText().length() > 0) {
-                    display.setText(display.getText().toString().substring(0, display.getText().length() - 1));
-                }
+                countCClicks++;
+                display.setText("");
+                sum = 0;
+                firstInput = true;
+                countCClicks = 0;
             }
         });
         btn_c.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                countCClicks++;
                 display.setText("");
-                sum = 0;
-                firstInput = true;
+
+                if(countCClicks == 2){
+                    sum = 0;
+                    firstInput = true;
+                    countCClicks = 0;
+                }
             }
         });
         btn_sign.setOnClickListener(new View.OnClickListener() {
@@ -415,6 +430,28 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                 firstInput = true;
             }
         });
+        btn_eq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(display.getText().length() > 0){
+                    switch(lastOP) {
+                        case "/":
+                            sum = sum / Double.parseDouble(display.getText().toString()) * 100;
+                            display.setText(String.valueOf(sum));
+                            break;
+                        case "*":
+                            sum = sum * Double.parseDouble(display.getText().toString())/100;
+                            display.setText(String.valueOf(sum));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                clearOnInput = true;
+                sum = 0;
+                firstInput = true;
+            }
+        });
         btn_dot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -429,4 +466,14 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         display = (TextView) findViewById(R.id.display);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putDouble("SUM_STATE_KEY", sum);
+        outState.putBoolean("FIRSTINPUT_STATE_KEY", firstInput);
+        outState.putBoolean("CLEARONINPUT_STATE_KEY", clearOnInput);
+        outState.putInt("COUNTCCLICKS_STATE_KEY", countCClicks);
+        outState.putString("LASTOP_STATE_KEY", lastOP);
+
+        super.onSaveInstanceState(outState);
+    }
 }

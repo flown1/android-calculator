@@ -29,16 +29,16 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/btn_back"
+                    android:id="@+id/btn_ac"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="->" />
+                    android:text="AC" />
 
                 <Button
                     android:id="@+id/btn_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C" />
+                    android:text="C/CE" />
 
                 <Button
                     android:id="@+id/btn_sign"

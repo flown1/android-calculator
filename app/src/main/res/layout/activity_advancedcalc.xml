@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:theme="@android:style/Theme.NoTitleBar"
     tools:context="com.example.a202258.myapp1.MainActivity">
 
     <LinearLayout
@@ -87,16 +88,16 @@
                 android:layout_height="match_parent">
 
                 <Button
-                    android:id="@+id/btn_back"
+                    android:id="@+id/btn_ac"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="->" />
+                    android:text="AC" />
 
                 <Button
                     android:id="@+id/btn_c"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C" />
+                    android:text="C/CE" />
 
                 <Button
                     android:id="@+id/btn_sign"
@@ -220,6 +221,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="=" />
+
+                <Button
+                    android:id="@+id/btn_proc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="%" />
             </TableRow>
 
         </TableLayout>
