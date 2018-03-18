@@ -430,7 +430,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                 firstInput = true;
             }
         });
-        btn_eq.setOnClickListener(new View.OnClickListener() {
+        btn_proc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(display.getText().length() > 0){
