@@ -14,6 +14,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().hide();
         setContentView(R.layout.activity_about);
 
     //    aboutText.setText("MyCalc3000\nis a simple calculator with two modes: simple and advanced.\n" +
