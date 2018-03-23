@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class SimpleCalcActivity extends AppCompatActivity {
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_c,
             btn_ac, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq;
-    private TextView display;
+    private TextView display, display_op;
     private double sum = 0;
     private boolean firstInput = true;
     private boolean clearOnInput = false;
@@ -33,7 +33,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
 
         }
         addListenerToButtons();
-        addListenerToEditText();
+        addListenerToTextView();
     }
 
     public void addListenerToButtons() {
@@ -176,6 +176,8 @@ public class SimpleCalcActivity extends AppCompatActivity {
                 sum = 0;
                 firstInput = true;
                 countCClicks = 0;
+                display_op.setText("");
+                lastOP = "";
             }
         });
         btn_c.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +190,8 @@ public class SimpleCalcActivity extends AppCompatActivity {
                     sum = 0;
                     firstInput = true;
                     countCClicks = 0;
+                    display_op.setText("+");
+                    lastOP = "";
                 }
             }
         });
@@ -221,6 +225,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                             display.setText(val);
                         clearOnInput = true;
                         lastOP = "/";
+                        display_op.setText("/");
                     }
                 }
             }
@@ -239,6 +244,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                         display.setText(val);
                     clearOnInput = true;
                     lastOP = "+";
+                    display_op.setText("+");
                 }
             }
         });
@@ -256,6 +262,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                         display.setText(val);
                     clearOnInput = true;
                     lastOP = "-";
+                    display_op.setText("-");
                 }
             }
         });
@@ -275,6 +282,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                         display.setText(val);
                     clearOnInput = true;
                     lastOP = "*";
+                    display_op.setText("*");
                 }
             }
         });
@@ -315,6 +323,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                 clearOnInput = true;
                 sum = 0;
                 firstInput = true;
+                display_op.setText("");
             }
         });
         btn_dot.setOnClickListener(new View.OnClickListener() {
@@ -327,8 +336,9 @@ public class SimpleCalcActivity extends AppCompatActivity {
         });
     }
 
-    public void addListenerToEditText(){
+    public void addListenerToTextView(){
         display = (TextView) findViewById(R.id.display);
+        display_op = (TextView) findViewById(R.id.display_op);
     }
 
     @Override
