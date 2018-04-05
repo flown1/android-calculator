@@ -190,7 +190,7 @@ public class SimpleCalcActivity extends AppCompatActivity {
                     sum = 0;
                     firstInput = true;
                     countCClicks = 0;
-                    display_op.setText("+");
+                    display_op.setText("");
                     lastOP = "";
                 }
             }

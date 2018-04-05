@@ -16,7 +16,6 @@ import static java.lang.Math.pow;
 import static java.lang.Math.sin;
 import static java.lang.Math.sqrt;
 import static java.lang.Math.tan;
-
 public class AdvancedCalcActivity extends AppCompatActivity {
     private Button btn_1, btn_2, btn_3, btn_4, btn_5, btn_6, btn_7, btn_8, btn_9, btn_0, btn_c,
             btn_ac, btn_sign, btn_div, btn_multi, btn_sub, btn_add, btn_dot, btn_eq,
@@ -334,11 +333,6 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                         display.setText(String.valueOf(sum));
                         clearOnInput = true;
                     }else{
-                        Context context = getApplicationContext();
-                        int duration = Toast.LENGTH_SHORT;
-
-                        Toast toast = Toast.makeText(context, "Invalid argument - use positive number", duration);
-                        toast.show();
                     }
                 }
             };
