@@ -205,7 +205,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         btn_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(display.getText().length() > 0) {
+                if(display.getText().length() >= 0) {
                     char firstCh = display.getText().toString().charAt(0);
                     if (firstCh == '-') {
                         display.setText(display.getText().toString().substring(1));
@@ -360,9 +360,17 @@ public class AdvancedCalcActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(display.getText().length() > 0){
-                    sum = sqrt(Double.parseDouble(display.getText().toString()));
-                    display.setText(String.valueOf(sum));
-                    clearOnInput = true;
+                    if(Double.parseDouble(display.getText().toString()) > 0) {
+                        sum = sqrt(Double.parseDouble(display.getText().toString()));
+                        display.setText(String.valueOf(sum));
+                        clearOnInput = true;
+                    }else{
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, "Invalid operation - square root of negative number", duration);
+                        toast.show();
+                    }
                 }
             };
         });
@@ -425,7 +433,6 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                         case "powy":
                             sum = pow(sum, Double.parseDouble(display.getText().toString()));
                             display.setText(String.valueOf(sum));
-
                             break;
                         default:
                             break;
