@@ -43,6 +43,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         }
         addListenerToButtons();
         addListenerToTextView();
+        display_op.setText(lastOP);
     }
     public void addListenerToButtons() {
         btn_0 = (Button) findViewById(R.id.btn_0);
@@ -205,7 +206,7 @@ public class AdvancedCalcActivity extends AppCompatActivity {
         btn_sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(display.getText().length() >= 0) {
+                if(display.getText().length() > 0 && !display.getText().equals(".")) {
                     char firstCh = display.getText().toString().charAt(0);
                     if (firstCh == '-') {
                         display.setText(display.getText().toString().substring(1));
@@ -333,6 +334,11 @@ public class AdvancedCalcActivity extends AppCompatActivity {
                         display.setText(String.valueOf(sum));
                         clearOnInput = true;
                     }else{
+                        Context context = getApplicationContext();
+                        int duration = Toast.LENGTH_SHORT;
+
+                        Toast toast = Toast.makeText(context, "Invalid argument - use positive number", duration);
+                        toast.show();
                     }
                 }
             };
